@@ -1,0 +1,53 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+
+    compile 'org.mortbay.jetty:servlet-api:3.0.20100224'
+
+    compile 'org.eclipse.jetty:jetty-webapp:9.3.1.v20150714'
+    compile 'org.eclipse.jetty:jetty-server:9.3.1.v20150714'
+    compile 'org.eclipse.jetty:jetty-websocket:8.1.17.v20150415'
+    compile 'org.eclipse.jetty.websocket:websocket-server:+'
+    compile 'javax.websocket:javax.websocket-api:1.1'
+}
+
+task execute(type:JavaExec) {
+    main = "com.datatransfer.JettyFromMain"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task mama {
+
+}
+
+task helloWorld {
+    doLast {
+        println 'Hello, World!'
+    }
+}
+
+task startSession << {
+    chant()
+}
+
+def chant() {
+    ant.echo(message: "Repeat after me...")
+}
+
+3.times {
+    task "yayGradle$it" {
+        println "Gradle rocks!"
+    }
+}
+
+yayGradle0.dependsOn startSession
+yayGradle2.dependsOn yayGradle1, yayGradle0
+task groupTherapy(dependsOn: yayGradle2)

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+        <union-subclass dynamic-insert="true" dynamic-update="true" lazy="false"
+                        name="com.inheritance.samples.domain.unionsubclass.CustomizedContractEmployee"
+                        extends="com.inheritance.samples.domain.unionsubclass.Employee"
+                        table="customized_contract_employee">
+            <property column="contract_terms" name="contractTerm" type="string"/> <!-- this is duplicated from joined-subclass definition from facility.hbm.xml-->
+            <property column="additional_contract_terms" name="additionalTerms" type="string"/>
+        </union-subclass>
+</hibernate-mapping>

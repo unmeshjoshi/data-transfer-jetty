@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-access="field" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="true" dynamic-update="true" lazy="false" mutable="true" name="com.inheritance.samples.domain.joinedsubclass.Profile" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="profiles">
+        <composite-id class="com.inheritance.samples.domain.joinedsubclass.ProfileKey" mapped="false" name="profileKey" unsaved-value="undefined">
+            <key-property column="id" name="id" type="string"/>
+            <key-property column="profile_id" name="profileId" type="string"/>
+            <key-property column="determinant_value" name="determinantValue" type="string"/>
+        </composite-id>
+        <property column="full_name" name="fullName" optimistic-lock="true" type="string" unique="false"/>
+        <joined-subclass dynamic-insert="true" dynamic-update="true" lazy="false" name="com.inheritance.samples.domain.joinedsubclass.SummarizedProfile" select-before-update="false" table="customized_profile">
+            <key on-delete="noaction">
+                <column name="id"/>
+                <column name="profile_id"/>
+                <column name="determinant_value"/>
+            </key>
+
+            <property column="profile_summary" generated="never" lazy="false" name="profileSummary" optimistic-lock="true" type="string" unique="false"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

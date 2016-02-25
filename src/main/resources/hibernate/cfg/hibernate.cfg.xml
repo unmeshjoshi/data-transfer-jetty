@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved. -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="query.substitutions">'Y'=true,'N'=false</property>
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="use_sql_comments">true</property>
+        <property name="use_outer_join">true</property>
+        <property name="max_fetch_depth">100</property>
+        <property name="bytecode.use_reflection_optimizer">true</property>
+
+
+        <!-- JDBC and connection properties -->
+        <!--<property name="connection.provider_class">com.ofss.fc.infra.das.orm.hibernate.HibernateConnectionProvider</property>-->
+        <property name="jdbc.batch_versioned_data">false</property><!-- set to false for Oracle drivers -->
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:mem:testdb</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="jdbc.fetch_size">0</property>
+
+        <!-- transaction properties -->
+        <property name="transaction.auto_close_session">false</property>
+        <!-- 		<property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property> -->
+        <!-- 		<property name="transaction.manager_lookup_class">org.hibernate.transaction.WeblogicTransactionManagerLookup</property> -->
+
+        <!--  cache properties -->
+        <!-- Disable the second-level cache  -->
+        <property name="cache.use_second_level_cache">false</property>
+        <!-- Disable the query cache  -->
+        <property name="cache.use_query_cache">false</property>
+
+        <!--  statistics -->
+        <property name="generate_statistics">false</property>
+
+    </session-factory>
+</hibernate-configuration>
