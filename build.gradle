@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'application'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile 'org.mortbay.jetty:servlet-api:3.0.20100224'
+    compile "org.codehaus.groovy:groovy-all:2.3.10"
+    compile "org.mockito:mockito-core:1.+"
+    compile 'junit:junit:4.12'
+    compile 'org.eclipse.jetty:jetty-webapp:9.3.1.v20150714'
+    compile 'org.eclipse.jetty:jetty-server:9.3.1.v20150714'
+    compile 'org.eclipse.jetty:jetty-websocket:8.1.17.v20150415'
+    compile 'org.eclipse.jetty.websocket:websocket-server:+'
+    compile 'javax.websocket:javax.websocket-api:1.1'
+    compile 'org.apache.httpcomponents:httpclient:4.4'
+}
+
+task startServer(type:JavaExec) {
+    main = "com.apisecurity.JettyServer"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task startClient(type:JavaExec) {
+    main = "com.apisecurity.JettyClient"
+    classpath = sourceSets.main.runtimeClasspath
+}
